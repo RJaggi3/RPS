@@ -9,49 +9,92 @@ function getComputerChoice(){
     return randomChoice;
 }
 
-function getPlayerChoice(){
-    let playerChoice = prompt("Pick Rock, Paper or Scissors: ");
-    return playerChoice.toLowerCase();
-}
 
 function getWinner(playerChoice,computerChoice){
-    let returnVar = "Draw"
+    let returnVar;
     if (playerChoice === rpsChoices[0] && computerChoice === rpsChoices[1]) {
-        computerPoints += 1
-        returnVar = "Computer wins"
+        
+        returnVar = "Computer"
     }
     else if (playerChoice === rpsChoices[1] && computerChoice === rpsChoices[2]) {
-        computerPoints += 1
-        returnVar = "Computer wins"
+        
+        returnVar = "Computer"
     }
     else if (playerChoice === rpsChoices[2] && computerChoice === rpsChoices[0]) {
-        computerPoints += 1
-        returnVar = "Computer wins"
+       
+        returnVar = "Computer"
     }
     else if (playerChoice === rpsChoices[0] && computerChoice === rpsChoices[2]) {
-        playerPoints += 1
-        returnVar = "Player wins"
+        
+        returnVar = "Player"
     }
     else if (playerChoice === rpsChoices[2] && computerChoice === rpsChoices[1]) {
-        playerPoints += 1
-        returnVar = "Player wins"
+        
+        returnVar = "Player"
     }
     else if (playerChoice === rpsChoices[1] && computerChoice === rpsChoices[0]) {
-        playerPoints += 1
-        returnVar = "Player wins"
+       
+        returnVar = "Player"
+    }
+    else if (playerChoice == computerChoice){
+        returnVar = "Draw"
     }
 
     return returnVar
 }
+function game() {
+    let choice = null; 
+    const container = document.getElementById("container");
 
-function game(){
-    for (x =0; x<6 ; x++){
-        let playerChoice = getPlayerChoice()
-        let computerChoice = getComputerChoice()
+    const para = document.createElement('p')
+    para.textContent = "Computer: 0 Player: 0";
 
-        console.log(getWinner(playerChoice,computerChoice))
-        console.log("Computer: " + computerPoints + " Player: " + playerPoints)
+    container.appendChild(para)
+
+    
+
+    
+    document.addEventListener("DOMContentLoaded", function () {
+        const buttonR = document.getElementById("rock");
+        const buttonP = document.getElementById("paper");
+        const buttonS = document.getElementById("scissors");
+
+        buttonR.addEventListener("click", function () {
+            choice = "rock";
+            playRound();
+        });
+
+        buttonP.addEventListener("click", function () {
+            choice = "paper";
+            playRound();
+        });
+
+        buttonS.addEventListener("click", function () {
+            choice = "scissors";
+            playRound();
+        });
+    });
+
+    function playRound() {
+        let computerChoice = getComputerChoice();
+        let result = getWinner(choice, computerChoice);
+
+
+        if (result === "Player") {
+            playerPoints++;
+        } else if (result === "Computer") {
+            computerPoints++;
+        }
+
+        para.textContent = "Computer: " + computerPoints + " Player: " + playerPoints
+       
     }
-}
+
+    }
+
+
+
+
+
 
 game()

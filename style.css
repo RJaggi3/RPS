@@ -1,0 +1,23 @@
+h1 {
+    font-size: 150px;
+    display:flex;
+    justify-content: center;
+}
+
+div {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+button {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+img {
+    width: 50%;
+    max-width: 400px;
+    height: auto;
+}
+
