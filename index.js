@@ -1,4 +1,4 @@
-const rpsChoices = ["rock","paper","scissors"];
+const rpsChoices = ["rock","paper","scissors"] ;
 let computerPoints = 0
 let playerPoints = 0 
 
@@ -13,28 +13,28 @@ function getComputerChoice(){
 function getWinner(playerChoice,computerChoice){
     let returnVar;
     if (playerChoice === rpsChoices[0] && computerChoice === rpsChoices[1]) {
-        
-        returnVar = "Computer"
+        computerPoints++;
+        returnVar = "Computer wins"
     }
     else if (playerChoice === rpsChoices[1] && computerChoice === rpsChoices[2]) {
-        
-        returnVar = "Computer"
+        computerPoints++;
+        returnVar = "Computer wins"
     }
     else if (playerChoice === rpsChoices[2] && computerChoice === rpsChoices[0]) {
-       
-        returnVar = "Computer"
+        computerPoints++;
+        returnVar = "Computer wins"
     }
     else if (playerChoice === rpsChoices[0] && computerChoice === rpsChoices[2]) {
-        
-        returnVar = "Player"
+        playerPoints++;
+        returnVar = "Player wins"
     }
     else if (playerChoice === rpsChoices[2] && computerChoice === rpsChoices[1]) {
-        
-        returnVar = "Player"
+        playerPoints++;
+        returnVar = "Player wins"
     }
     else if (playerChoice === rpsChoices[1] && computerChoice === rpsChoices[0]) {
-       
-        returnVar = "Player"
+        playerPoints++;
+        returnVar = "Player wins"
     }
     else if (playerChoice == computerChoice){
         returnVar = "Draw"
@@ -44,12 +44,22 @@ function getWinner(playerChoice,computerChoice){
 }
 function game() {
     let choice = null; 
-    const container = document.getElementById("container");
+    const container = document.getElementById("contain");
 
-    const para = document.createElement('p')
-    para.textContent = "Computer: 0 Player: 0";
+    const paraScore = document.createElement('p')
+    paraScore.style.cssText = 'display: flex; justify-content: center; margin-top: 50px; font-size: 50px;'
+    paraScore.textContent = "Computer: 0 Player: 0";
 
-    container.appendChild(para)
+    const paraRound = document.createElement('p')
+    paraRound.style.cssText = 'display: flex; justify-content: center; margin-top: 50px; font-size: 50px;'
+
+    const paraCPUChoice = document.createElement('p')
+    paraCPUChoice.style.cssText = 'display: flex; justify-content: center; font-size: 50px;'
+
+    container.appendChild(paraScore)
+    container.appendChild(paraCPUChoice)
+    container.appendChild(paraRound)
+
 
     
 
@@ -79,15 +89,9 @@ function game() {
         let computerChoice = getComputerChoice();
         let result = getWinner(choice, computerChoice);
 
-
-        if (result === "Player") {
-            playerPoints++;
-        } else if (result === "Computer") {
-            computerPoints++;
-        }
-
-        para.textContent = "Computer: " + computerPoints + " Player: " + playerPoints
-       
+        paraScore.textContent = "Computer: " + computerPoints + " Player: " + playerPoints 
+        paraRound.textContent = result
+        paraCPUChoice.textContent = "Computer picked: " + computerChoice
     }
 
     }
